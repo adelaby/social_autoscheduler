@@ -50,3 +50,4 @@ celery==4.0.2
 
 
 # Your custom requirements go here
+django-categories==1.5.3
