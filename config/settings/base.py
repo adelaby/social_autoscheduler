@@ -52,6 +52,8 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'categories',
+    'categories.editor',
 ]
 
 # Apps specific for this project go here.
