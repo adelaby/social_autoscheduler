@@ -1,0 +1,5 @@
+[run]
+include = social_autoscheduler/*
+omit = *migrations*, *tests*
+plugins =
+    django_coverage_plugin
