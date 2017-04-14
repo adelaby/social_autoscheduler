@@ -62,6 +62,7 @@ LOCAL_APPS = [
     # custom users app
     'social_autoscheduler.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'social_autoscheduler.publication_scheduler.apps.PublicationSchedulerConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
