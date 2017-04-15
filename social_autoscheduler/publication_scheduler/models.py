@@ -40,10 +40,13 @@ class Publication(models.Model):
         social_network (:obj:models.ForeignKey): social network the publication
             belongs to (foreign key to `SocialNetwork` model).
         content (:obj:models.TextField): text content of the publication.
+        category (:obj:`models.ForeignKey`): category in which the publication
+            belongs to (foreign key to `Category` model).
     """
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     social_network = models.ForeignKey(SocialNetwork)
     content = models.TextField()
+    category = models.ForeignKey(Category, blank=True, null=True)
 
     def __str__(self):
         return Truncator(self.content).chars(89)
