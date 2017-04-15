@@ -13,7 +13,7 @@ class Category(CategoryBase):
         already implements basic attributes such as name, slug, etc.
 
     Attributes:
-        created_by (:obj:models.ForeignKey): user who created the category
+        created_by (:obj:`models.ForeignKey`): user who created the category
             (foreign key to custom User model)
     """
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
@@ -23,7 +23,7 @@ class SocialNetwork(models.Model):
     """Model representing a social network.
 
     Attributes:
-        name (:obj:models.CharField): name of the social network.
+        name (:obj:`models.CharField`): name of the social network.
     """
     name = models.CharField(max_length=255)
 
@@ -35,11 +35,11 @@ class Publication(models.Model):
     """Model representing a publication posted on a social network.
 
     Attributes:
-        author (:obj:models.ForeignKey): user who posted the publication
-            (foreign key towards custom User model).
-        social_network (:obj:models.ForeignKey): social network the publication
-            belongs to (foreign key to `SocialNetwork` model).
-        content (:obj:models.TextField): text content of the publication.
+        author (:obj:`models.ForeignKey`): user who posted the publication
+            (foreign key to custom User model).
+        social_network (:obj:`models.ForeignKey`): social network the
+            publication belongs to (foreign key to `SocialNetwork` model).
+        content (:obj:`models.TextField`): text content of the publication.
         category (:obj:`models.ForeignKey`): category in which the publication
             belongs to (foreign key to `Category` model).
     """
