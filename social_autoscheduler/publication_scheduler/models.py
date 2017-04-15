@@ -2,6 +2,22 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import Truncator
 
+from categories.base import CategoryBase
+
+
+class Category(CategoryBase):
+    """Model representing a user created Category.
+
+    Note:
+        This model inherits from django-categories CategoryBase model, which
+        already implements basic attributes such as name, slug, etc.
+
+    Attributes:
+        created_by (:obj:models.ForeignKey): user who created the category
+            (foreign key to custom User model)
+    """
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL)
+
 
 class SocialNetwork(models.Model):
     """Model representing a social network.
