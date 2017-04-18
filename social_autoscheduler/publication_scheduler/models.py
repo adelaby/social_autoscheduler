@@ -46,7 +46,12 @@ class Publication(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     social_network = models.ForeignKey(SocialNetwork)
     content = models.TextField()
-    category = models.ForeignKey(Category, blank=True, null=True)
+    category = models.ForeignKey(
+        Category,
+        blank=True,
+        null=True,
+        related_name='publications'
+    )
 
     def __str__(self):
         return Truncator(self.content).chars(89)
