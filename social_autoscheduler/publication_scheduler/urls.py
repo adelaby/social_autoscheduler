@@ -10,4 +10,9 @@ urlpatterns = [
         view=views.PublicationCreate.as_view(),
         name='publication-create'
     ),
+    url(
+        regex=r'^list/$',
+        view=views.PublicationList.as_view(),
+        name='publication-list'
+    ),
 ]
