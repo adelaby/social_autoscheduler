@@ -288,3 +288,4 @@ ADMIN_URL = r'^admin/'
 
 # Your common stuff: Below this line define 3rd party library settings
 # ------------------------------------------------------------------------------
+DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap.html'
