@@ -54,6 +54,7 @@ THIRD_PARTY_APPS = [
     'allauth.socialaccount',  # registration
     'categories.editor',
     'schedule',
+    'django_tables2',
 ]
 
 # Apps specific for this project go here.
