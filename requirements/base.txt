@@ -52,3 +52,4 @@ celery==4.0.2
 # Your custom requirements go here
 django-categories==1.5.3
 django-scheduler==0.8.4
+django-tables2==1.5.0
