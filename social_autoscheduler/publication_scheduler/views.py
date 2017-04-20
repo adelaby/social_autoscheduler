@@ -3,9 +3,11 @@ from django.views.generic.edit import CreateView
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
+from django_tables2 import SingleTableView
 
 from social_autoscheduler.publication_scheduler.models import (Publication,
                                                                SocialNetwork)
+from social_autoscheduler.publication_scheduler.tables import PublicationTable
 
 
 class PublicationCreate(LoginRequiredMixin, CreateView):
@@ -44,3 +46,22 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
         """
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class PublicationList(LoginRequiredMixin, SingleTableView):
+    """View for showing the list of current user publications.
+
+    Notes:
+        django-tables2 `SingleTableView` already inherits from Django `ListView`.
+    """
+
+    model = Publication
+    table_class = PublicationTable
+
+    def get_queryset(self):
+        """Filters and returns all publications created by current user.
+
+        Returns:
+            _ (:obj:QuerySet): a Django `QuerySet` instance.
+        """
+        return Publication.objects.filter(author=self.request.user)
