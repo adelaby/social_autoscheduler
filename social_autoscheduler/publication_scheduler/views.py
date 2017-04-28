@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic.edit import CreateView
 
 from crispy_forms.helper import FormHelper
@@ -33,13 +34,15 @@ class CrispySubmitMixin(object):
         return form
 
 
-class PublicationCreate(LoginRequiredMixin, CrispySubmitMixin, CreateView):
+class PublicationCreate(LoginRequiredMixin, SuccessMessageMixin,
+                        CrispySubmitMixin, CreateView):
     """View managing the creation of `Publication` instances.
     """
 
     model = Publication
     fields = ['content', 'category', 'social_network']
     success_url = '/'
+    success_message = 'Publication created successfully'
 
     def get_initial(self):
         """Generates initial data and sets `social_network` fields.
