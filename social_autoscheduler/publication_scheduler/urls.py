@@ -15,4 +15,9 @@ urlpatterns = [
         view=views.PublicationList.as_view(),
         name='publication-list'
     ),
+    url(
+        regex=r'^category/add/$',
+        view=views.CategoryCreate.as_view(),
+        name='category-create'
+    ),
 ]
