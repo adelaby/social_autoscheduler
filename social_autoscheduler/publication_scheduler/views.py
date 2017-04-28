@@ -7,7 +7,8 @@ from crispy_forms.layout import Submit
 from django_tables2 import SingleTableView
 
 from social_autoscheduler.publication_scheduler.models import (Publication,
-                                                               SocialNetwork)
+                                                               SocialNetwork,
+                                                               Category)
 from social_autoscheduler.publication_scheduler.tables import PublicationTable
 
 
@@ -80,3 +81,21 @@ class PublicationList(LoginRequiredMixin, SingleTableView):
             _ (:obj:QuerySet): a Django `QuerySet` instance.
         """
         return Publication.objects.filter(author=self.request.user)
+
+
+class CategoryCreate(LoginRequiredMixin, SuccessMessageMixin,
+                     CrispySubmitMixin, CreateView):
+    """View managing the creation of `Category` instances.
+    """
+
+    model = Category
+    fields = ['name']
+    success_url = '/'
+    success_message = 'Category created successfully'
+
+    def form_valid(self, form):
+        """Sets `created_by` `Category` field to current user then redirect to
+        success url.
+        """
+        form.instance.created_by = self.request.user
+        return super().form_valid(form)
