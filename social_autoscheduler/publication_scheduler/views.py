@@ -10,13 +10,16 @@ from social_autoscheduler.publication_scheduler.models import (Publication,
 from social_autoscheduler.publication_scheduler.tables import PublicationTable
 
 
-class PublicationCreate(LoginRequiredMixin, CreateView):
-    """View managing the creation of `Publication` instances.
-    """
+class CrispySubmitMixin(object):
+    """Mixin adding a `Submit` input helper to a `FormView`'s form.
 
-    model = Publication
-    fields = ['content', 'category', 'social_network']
-    success_url = '/'
+    Use this mixin with any Django `FormView` class (or inheriting class) to add
+    a submit button to the generated form.
+
+    Note:
+        Do not forget to render the form's helpers when using `crispy` template
+        tag.
+    """
 
     def get_form(self, form_class=None):
         """Generates a `ModelForm` and adds a `Submit` button to it.
@@ -28,6 +31,15 @@ class PublicationCreate(LoginRequiredMixin, CreateView):
         form.helper = FormHelper()
         form.helper.add_input(Submit('submit', 'Submit'))
         return form
+
+
+class PublicationCreate(LoginRequiredMixin, CrispySubmitMixin, CreateView):
+    """View managing the creation of `Publication` instances.
+    """
+
+    model = Publication
+    fields = ['content', 'category', 'social_network']
+    success_url = '/'
 
     def get_initial(self):
         """Generates initial data and sets `social_network` fields.
