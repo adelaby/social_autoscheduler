@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import Truncator
 
+from schedule.models import Event
+
 from categories.base import CategoryBase
 
 
@@ -55,3 +57,18 @@ class Publication(models.Model):
 
     def __str__(self):
         return Truncator(self.content).chars(89)
+
+
+class PublishEvent(Event):
+    """Model representing a recurring publication publish event.
+
+    Inherits from django-scheduler `Event` class.
+
+    Attributes:
+        social_network (:obj:`models.ForeignKey`): social network the event
+            belongs to (foreign key to `SocialNetwork` model).
+        category (:obj:`models.ForeignKey`): category in which the event belongs
+            to (foreign key to `Category` model).
+    """
+    social_network = models.ForeignKey(SocialNetwork)
+    category = models.ForeignKey(Category, related_name='publish_events')
