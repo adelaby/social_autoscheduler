@@ -20,4 +20,9 @@ urlpatterns = [
         view=views.CategoryCreate.as_view(),
         name='category-create'
     ),
+    url(
+        regex=r'^event/add/$',
+        view=views.PublishEventCreate.as_view(),
+        name='publish-event-create'
+    ),
 ]
