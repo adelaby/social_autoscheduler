@@ -113,7 +113,7 @@ class PublishEventCreate(LoginRequiredMixin, SuccessMessageMixin,
     """View managing the creation of a `PublishEvent` instance.
     """
 
-    template_name = 'publication_scheduler/rule_form.html'
+    template_name = 'publication_scheduler/event_form.html'
     form_class = EventForm
     success_url = '/'
     success_message = 'Rule created successfully'
