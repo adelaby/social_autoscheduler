@@ -72,3 +72,6 @@ class PublishEvent(Event):
     """
     social_network = models.ForeignKey(SocialNetwork)
     category = models.ForeignKey(Category, related_name='publish_events')
+
+    def __str__(self):
+        return self.title
